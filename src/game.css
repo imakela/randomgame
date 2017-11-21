@@ -4,6 +4,7 @@
     text-align: center;
     display: block;
     width: 75%;
+    max-width: 900px;
     height: 80%;
     background-color: #008080;
     border-radius: 5%;
