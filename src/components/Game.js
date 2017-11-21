@@ -94,7 +94,7 @@ class Game extends React.Component {
       6: { bombs: 3, blocks: 6 },
       7: { bombs: 1, blocks: 30 },
       8: { bombs: 3, blocks: 8 },
-      9: { bombs: 3, blocks: 8 },
+      9: { bombs: 2, blocks: 8 },
       10: { bombs: 4, blocks: 10 },
       11: { bombs: 13, blocks: 16 },
       12: { bombs: 5, blocks: 12 },
