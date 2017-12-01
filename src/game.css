@@ -1,338 +1,320 @@
-
 .game {
-    margin: auto;
-    text-align: center;
-    display: block;
-    width: 75%;
-    max-width: 900px;
-    height: 80%;
-    background-color: #008080;
-    border-radius: 5%;
-    box-shadow: 0px 0px 12px 2px #4CAF50;
+  margin: auto;
+  text-align: center;
+  display: block;
+  width: 75%;
+  max-width: 900px;
+  height: 80%;
+  background-color: #008080;
+  box-shadow: 0px 0px 12px 2px #4caf50;
 }
 
 h1 {
-    font-family: Courier New, Courier, monospace;
-    font-size: 3em;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  font-family: Courier New, Courier, monospace;
+  font-size: 3em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .modal {
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .infomodal {
-    background-color: darkgreen;
-    margin: 15% auto; 
-    padding: 19px;
-    border: 1px solid #888;
-    width: 50%;
-    border-radius: 10%;
-    box-shadow: 0px 0px 30px 0px white;
-    line-height: 1.5em;
+  background-color: darkgreen;
+  margin: 7% auto;
+  padding: 19px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10%;
+  box-shadow: 0px 0px 30px 0px white;
+  line-height: 1.5em;
 }
 .infomodal h2 {
-    margin-top: 30px;
-    font-size: 2em;
+  margin-top: 30px;
+  font-size: 2em;
 }
 
 .infoimg:hover {
-    border-radius: 50%;
-    box-shadow: 0px 0px 30px 0px white;
-    cursor: pointer;
-}
-
-.infoimg:active {
-    border-radius: 50%;
-    box-shadow: 0px 0px 30px 0px green;
-    cursor: pointer;
+  box-shadow: 0 0 10px 0px black;
+  cursor: pointer;
 }
 
 .infoimg {
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    float: left;
-    margin: 15px;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 15px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    padding: 8px;    
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 8px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .close:hover {
-    cursor: pointer;
-    color: white;
-}
-
-.gamemode input {
-    margin-left: 10px;
+  cursor: pointer;
+  color: white;
 }
 
 .gamemode p {
-    margin: 2px;
+  margin: 2px;
 }
 
 .gamemode h3 {
-    margin: 5px;
-    text-decoration: underline;
+  margin: 5px;
+  text-decoration: underline;
 }
 
 .levelnum {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .restartbutton {
-    display: inline-block;
-    margin: auto;
-    margin-bottom: 5px; 
-    margin-top: 5px;
-    font-size: 0.75em;
-    text-align: center;
-    border-radius: 25%;
-    background-color: white;
-    width: 75px;
-    height: 40px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    box-shadow: 0px 0px 12px 2px white;
+  display: inline-block;
+  margin: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 0.75em;
+  text-align: center;
+  border-radius: 25%;
+  background-color: white;
+  width: 75px;
+  height: 40px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0px 0px 12px 2px white;
 }
 
 .restartbutton p {
-    display: inline-block;
-    vertical-align: middle;
-
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .restartbutton:hover {
-    box-shadow: 0px 0px 12px 2px black;
-    cursor: pointer;
+  box-shadow: 0px 0px 12px 2px black;
+  cursor: pointer;
 }
 
 .restartbutton:active {
-    box-shadow: 0px 0px 12px 2px green;
-    cursor: pointer;
+  box-shadow: 0px 0px 12px 2px green;
+  cursor: pointer;
 }
 
 .settings input {
-    margin-left: 10px;
-    width: 45px;
-    height: 25px;
+  margin-left: 10px;
+  width: 45px;
+  height: 25px;
 }
 
-input[type=number]::-webkit-inner-spin-button {
-    width: 20px;
-    height: 30px;
+input[type="number"]::-webkit-inner-spin-button {
+  width: 20px;
+  height: 30px;
 }
 
-
-.odds  {
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.20em;
-    display: inline-block;
-    margin: 10px;
-    margin-bottom: 15px;
-    height: 60px;
-    font-family: Courier New, Courier, monospace;
+.odds {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2em;
+  display: inline-block;
+  margin: 10px;
+  margin-bottom: 15px;
+  height: 60px;
+  font-family: Courier New, Courier, monospace;
 }
-
 
 .skullimage {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
 }
 
 .skullimage2 {
-    width: 20px;
-    height: 20px;
-    opacity: 0.75;
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
 }
 
 .nextlevel {
-    text-align: center;
-    display: inline-block;
-    background-color: white;
-    width: 75px;
-    height: 25px;
-    border-radius: 50px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding: 7px;
-    padding-bottom: 12px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    box-shadow: 0px 0px 20px 0px black;
+  text-align: center;
+  display: inline-block;
+  background-color: white;
+  width: 75px;
+  height: 25px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 7px;
+  padding-bottom: 12px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0px 0px 20px 0px black;
 }
 
 .nextlevel:hover {
-    box-shadow: 0px 0px 20px 0px white;
-    cursor: pointer;
+  box-shadow: 0px 0px 20px 0px white;
+  cursor: pointer;
 }
 
 .nextlevel:active {
-    box-shadow: 0px 0px 20px 0px black;
+  box-shadow: 0px 0px 20px 0px black;
 }
 
 .newgame {
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-    display: inline-block;
-    background-color: green;
-    border-radius: 25px;
-    border: 1px solid black;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  background-color: green;
+  border-radius: 25px;
+  border: 1px solid black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .newgame:hover {
-    box-shadow: 0px 0px 15px 0px white;
-    cursor: pointer;
+  box-shadow: 0px 0px 15px 0px white;
+  cursor: pointer;
 }
 
 .newgame:active {
-    box-shadow: 0px 0px 15px 0px white;
-    box-shadow: inset 0px 0px 15px white;
-    cursor: pointer;
+  box-shadow: 0px 0px 15px 0px white;
+  box-shadow: inset 0px 0px 15px white;
+  cursor: pointer;
 }
 
 .percent {
-    font-family: Courier New, Courier, monospace;
-    font-weight: bold;
-    font-size: 1.5em;
+  font-family: Courier New, Courier, monospace;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
-
 .block {
-    width: 80px;
-    height: 80px;
-    border-radius: 25%;
-    text-align: center;
-    display: inline-block;
-    margin: 4px;
-    border: 1px solid black;
-    user-select: none;
+  width: 80px;
+  height: 80px;
+  border-radius: 25%;
+  text-align: center;
+  display: inline-block;
+  margin: 4px;
+  border: 1px solid black;
+  user-select: none;
 }
 
 .blockimage {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    padding: 20px;
-    display: block;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 20px;
+  display: block;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .blocks {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 .passiveblock {
-    width: 80px;
-    height: 80px;
-    border-radius: 25%;
-    text-align: center;
-    display: inline-block;
-    margin: 4px;
-    border: 1px solid black;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  width: 80px;
+  height: 80px;
+  border-radius: 25%;
+  text-align: center;
+  display: inline-block;
+  margin: 4px;
+  border: 1px solid black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .clickedblock {
-    background-color: white;
-    width: 80px;
-    height: 80px;
-    border-radius: 25%;
-    text-align: center;
-    display: inline-block;
-    margin: 4px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px 0px white;
-    box-shadow: inset 0px 0px 50px green;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  background-color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 25%;
+  text-align: center;
+  display: inline-block;
+  margin: 4px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 15px 0px white;
+  box-shadow: inset 0px 0px 50px green;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-
 .bombblock {
-    background-color: red;
-    width: 80px;
-    height: 80px;
-    border-radius: 25%;
-    text-align: center;
-    display: inline-block;
-    margin: 4px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px 2px red;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;   
+  background-color: red;
+  width: 80px;
+  height: 80px;
+  border-radius: 25%;
+  text-align: center;
+  display: inline-block;
+  margin: 4px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 15px 2px red;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .block:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 0px black;
+  cursor: pointer;
+  box-shadow: 0px 0px 15px 0px black;
 }
 
 .block:active {
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 0px white;
+  cursor: pointer;
+  box-shadow: 0px 0px 15px 0px white;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import randomHexColor from "random-hex-color";
 import "../game.css";
 import GameMode from "./GameMode";
 import Block from "./Block";
@@ -8,37 +9,62 @@ import Settings from "./Settings";
 import Levels from "./Levels";
 import Info from "./Info";
 import NextLevel from "./NextLevel";
-var randomHexColor = require("random-hex-color");
+var _ = require("lodash");
+
+const numberOfBlocks = 4;
+const numberOfBombs = 1;
+const levelTexts = [
+  "Lets start with a simple coin flip, 50:50.",
+  "1:3 easy.",
+  "1:4 still pretty easy.",
+  "Now something a bit more interesting.",
+  "This is not hard, you can do it!",
+  "A few tries and you will get this one.",
+  "Lets change it up a bit, only one losing block. Can you dodge it long enough?",
+  "This might take a while, but you can do it!",
+  "Three bad blocks lurking in here, can you NOT find them?",
+  "A first hard one, but give it some time and you will be victorious!",
+  "Only three harmless ones in this minefield, can you find them all?",
+  "If you manage to get this one right on the first try, you are super lucky...",
+  "I'm impressed that you have gotten this far, it's only gonna get harder though...",
+  "If you manage to get this one right you truly are a champion.",
+  "I'm just gonna say it, your odds of making through this one are veeeeeery slim.",
+  "Wow... You truly are remarkable, but if you're not exceptionally lucky your journey will end here...",
+  "What is this?? You just might be the luckiest person alive! This level is your reward (haha).",
+  "I was pretty sure that no one is ever going to pass that last level," +
+    " but if you did I'm sure you want an even bigger challenge, so here you go :)",
+  ".... I have no words... Maybe now would be the time to stop playing and go buy yourself a lottery ticket. " +
+    "Just kidding, reach for the stars!",
+  "You shall not PASS!",
+  "No one is ever going to get to this level, but I made it anyway because why not. This is it. The last level." +
+    " If you pass this one, you win."
+];
+
+const levelConfigs = {
+  1: { bombs: 1, blocks: 2 },
+  2: { bombs: 2, blocks: 3 },
+  3: { bombs: 3, blocks: 4 },
+  4: { bombs: 2, blocks: 5 },
+  5: { bombs: 2, blocks: 6 },
+  6: { bombs: 3, blocks: 6 },
+  7: { bombs: 1, blocks: 30 },
+  8: { bombs: 3, blocks: 8 },
+  9: { bombs: 3, blocks: 10 },
+  10: { bombs: 4, blocks: 10 },
+  11: { bombs: 13, blocks: 16 },
+  12: { bombs: 5, blocks: 12 },
+  13: { bombs: 4, blocks: 15 },
+  14: { bombs: 3, blocks: 24 },
+  15: { bombs: 6, blocks: 15 },
+  16: { bombs: 5, blocks: 18 },
+  17: { bombs: 3, blocks: 45 },
+  18: { bombs: 13, blocks: 19 },
+  19: { bombs: 9, blocks: 18 },
+  20: { bombs: 4, blocks: 40 },
+  21: { bombs: 12, blocks: 21 }
+};
 
 class Game extends React.Component {
-  static numberOfBlocks = 4;
-  static numberOfBombs = 1;
-  static levelTexts = [
-    "Lets start with a simple coin flip, 50:50.",
-    "1:3 easy.",
-    "1:4 still pretty easy.",
-    "Now something a bit more interesting.",
-    "This is not hard, you can do it!",
-    "A few tries and you will get this one.",
-    "Lets change it up a bit, only one losing block. Can you dodge it long enough?",
-    "This might take a while, but you can do it!",
-    "Two bad blocks lurking in here, can you NOT find them?",
-    "A first hard one, but give it some time and you will be victorious!",
-    "Only three harmless ones in this minefield, can you find them all?",
-    "If you manage to get this one right on the first try, you are super lucky...",
-    "I'm impressed that you have gotten this far, it's only gonna get harder though...",
-    "If you manage to get this one right you truly are a champion.",
-    "I'm just gonna say it, your odds of making through this one are veeeeeery slim.",
-    "Wow... You truly are remarkable, but if you're not exceptionally lucky your journey will end here...",
-    "What is this?? You just might be the luckiest person alive! This level is your reward (haha).",
-    "I was pretty sure that no one is ever going to pass that last level," +
-      " but if you did I'm sure you want an even bigger challenge, so here you go :)",
-    ".... I have no words... Maybe now would be the time to stop playing and go buy yourself a lottery ticket. " +
-      "Just kidding, reach for the stars!",
-    "Youuuuuu shall not PASSSSSSSSSSS!",
-    "No one is ever going to get to this level, but I made it anyway because why not. This is it. The last level." +
-      " If you pass this one, you win (if you didn't use some kind of a bot you dirty cheater)."
-  ];
   constructor(props) {
     super(props);
     this.state = {
@@ -47,11 +73,11 @@ class Game extends React.Component {
       tries: 0,
       totalTries: 0,
       levelTotalOdds: 0,
-      blockCount: Game.numberOfBlocks,
-      bombPositions: Game.initBombs(Game.numberOfBombs, Game.numberOfBlocks),
-      blockColors: Game.randomColor(Game.numberOfBlocks),
+      blockCount: numberOfBlocks,
+      bombPositions: Game.initBombs(numberOfBombs, numberOfBlocks),
+      blockColors: Game.randomColor(numberOfBlocks),
       selectedBlocks: [],
-      bombCount: Game.numberOfBombs,
+      bombCount: numberOfBombs,
       isDone: false,
       levelDone: false,
       infoVisible: false
@@ -83,33 +109,8 @@ class Game extends React.Component {
   };
 
   initLevel = level => {
-    let levelBombCount;
-    let levelBlockCount;
-    const levelConfigs = {
-      1: { bombs: 1, blocks: 2 },
-      2: { bombs: 2, blocks: 3 },
-      3: { bombs: 3, blocks: 4 },
-      4: { bombs: 2, blocks: 5 },
-      5: { bombs: 2, blocks: 6 },
-      6: { bombs: 3, blocks: 6 },
-      7: { bombs: 1, blocks: 30 },
-      8: { bombs: 3, blocks: 8 },
-      9: { bombs: 2, blocks: 8 },
-      10: { bombs: 4, blocks: 10 },
-      11: { bombs: 13, blocks: 16 },
-      12: { bombs: 5, blocks: 12 },
-      13: { bombs: 4, blocks: 15 },
-      14: { bombs: 3, blocks: 24 },
-      15: { bombs: 6, blocks: 15 },
-      16: { bombs: 5, blocks: 18 },
-      17: { bombs: 3, blocks: 45 },
-      18: { bombs: 13, blocks: 19 },
-      19: { bombs: 9, blocks: 18 },
-      20: { bombs: 4, blocks: 40 },
-      21: { bombs: 12, blocks: 21 }
-    };
-    levelBombCount = levelConfigs[level].bombs;
-    levelBlockCount = levelConfigs[level].blocks;
+    const levelBombCount = levelConfigs[level].bombs;
+    const levelBlockCount = levelConfigs[level].blocks;
     let levelOdds = 1;
     let singleOdds = 1;
     let d = levelBlockCount;
@@ -135,20 +136,23 @@ class Game extends React.Component {
   };
 
   selectBlock = block => {
-    if (this.state.selectedBlocks.indexOf(block) >= 0) {
+    const clicked = this.state.selectedBlocks.indexOf(block) >= 0;
+    const allowClicking =
+      !clicked && !this.state.isDone && !this.state.levelDone;
+    if (clicked) {
       return;
-    } else if (!this.state.isDone && !this.state.levelDone) {
+    } else if (allowClicking) {
       this.setState(
         prevState => ({
           selectedBlocks: prevState.selectedBlocks.concat(block),
           blockColors: this.changeColor(prevState.blockColors, block)
         }),
-        this.updatedoneStatus(block)
+        this.updateDoneStatus(block)
       );
     }
   };
 
-  updatedoneStatus = i => {
+  updateDoneStatus = i => {
     if (this.state.bombPositions.indexOf(i) >= 0) {
       this.setState(prevState => ({
         isDone: true,
@@ -227,12 +231,10 @@ class Game extends React.Component {
   };
 
   static randomColor = num => {
-    var arr = [];
-    for (let j = 0; j < num; j++) {
+    return _.range(num).map(i => {
       let color = randomHexColor();
-      arr.push(color);
-    }
-    return arr;
+      return color;
+    });
   };
 
   render() {
@@ -264,7 +266,7 @@ class Game extends React.Component {
             selectedBlocks={this.state.selectedBlocks}
             isDone={this.state.isDone}
             levelDone={this.state.levelDone}
-            texts={Game.levelTexts}
+            texts={levelTexts}
             tries={this.state.tries}
             totalTries={this.state.totalTries}
           />
