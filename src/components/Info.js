@@ -47,7 +47,7 @@ const Info = props => {
                 <b>
                   {" "}
                   If you choose a losing block, you have to start the level
-                  again.{" "}
+                  again.
                 </b>
               </p>
               <p>Good Luck!</p>

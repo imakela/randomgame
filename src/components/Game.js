@@ -108,7 +108,7 @@ class Game extends React.Component {
     this.setState({ tries: 0 }, this.initLevel(level));
   };
 
-  initLevel = level => {
+  initLevel = (level, loadedTries, loadedTotalTries) => {
     const levelBombCount = levelConfigs[level].bombs;
     const levelBlockCount = levelConfigs[level].blocks;
     let levelOdds = 1;
@@ -131,7 +131,10 @@ class Game extends React.Component {
       blockColors: Game.randomColor(levelBlockCount),
       selectedBlocks: [],
       isDone: false,
-      levelDone: false
+      levelDone: false,
+      tries: loadedTries === undefined ? prevState.tries : loadedTries,
+      totalTries:
+        loadedTotalTries === undefined ? prevState.totalTries : loadedTotalTries
     }));
   };
 
@@ -237,6 +240,25 @@ class Game extends React.Component {
     });
   };
 
+  saveGame = (level, tries, totalTries) => {
+    localStorage.setItem("level", level);
+    localStorage.setItem("tries", tries);
+    localStorage.setItem("totalTries", totalTries);
+    this.setState({ gameMode: "levels" });
+  };
+
+  loadGame = level => {
+    if (localStorage.getItem("level") !== null) {
+      let loadedLevel = parseInt(localStorage.getItem("level"), 10);
+      let loadedTries = parseInt(localStorage.getItem("tries"), 10);
+      let loadedTotalTries = parseInt(localStorage.getItem("totalTries"), 10);
+      if (level === loadedLevel) {
+        return;
+      }
+      this.initLevel(loadedLevel, loadedTries, loadedTotalTries);
+    }
+  };
+
   render() {
     return (
       <div className="game">
@@ -269,6 +291,8 @@ class Game extends React.Component {
             texts={levelTexts}
             tries={this.state.tries}
             totalTries={this.state.totalTries}
+            saveLevel={this.saveGame}
+            loadLevel={this.loadGame}
           />
         )}
         <Odds
