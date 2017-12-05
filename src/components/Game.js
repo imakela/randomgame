@@ -64,6 +64,15 @@ const levelConfigs = {
   21: { bombs: 12, blocks: 21 }
 };
 
+const getUniqueIndex = (existingBombs, blockCount) => {
+  let bombCandidate = Math.floor(Math.random() * blockCount);
+  const isUnique = existingBombs.indexOf(bombCandidate) === -1;
+  if (!isUnique) {
+    return getUniqueIndex(existingBombs, blockCount);
+  }
+  return bombCandidate;
+};
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -221,16 +230,11 @@ class Game extends React.Component {
   };
 
   static initBombs = (bombCount, blockCount) => {
-    var arr = [];
-    for (let i = 0; i < bombCount; i++) {
-      let ind = Math.floor(Math.random() * blockCount);
-      if (arr.indexOf(ind) < 0) {
-        arr.push(ind);
-      } else {
-        i--;
-      }
-    }
-    return arr;
+    return _.range(bombCount).reduce(
+      currentBombs =>
+        currentBombs.concat(getUniqueIndex(currentBombs, blockCount)),
+      []
+    );
   };
 
   static randomColor = num => {
