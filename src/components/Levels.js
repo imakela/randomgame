@@ -1,15 +1,5 @@
 import React from "react";
-
-const storageAvailabiliy = () => {
-  let test = "test";
-  try {
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
+import Cookies from "js-cookie";
 
 const Levels = props => {
   let margin;
@@ -19,24 +9,13 @@ const Levels = props => {
     margin = 34;
   }
   let disabled;
-  let storageActive = storageAvailabiliy();
+  let storageActive = navigator.cookieEnabled;
   if (storageActive) {
     disabled =
-      props.level === parseInt(localStorage.getItem("level"), 10)
-        ? true
-        : false;
+      props.level === parseInt(Cookies.get("level"), 10) ? true : false;
   }
   return (
     <div style={{ marginBottom: margin }}>
-      {props.level === 1 && (
-        <div>
-          <p>Welcome to levels-mode!</p>
-          <p>
-            Here you will face increasingly worse odds in each level, but I'm
-            sure you can finish them all!
-          </p>
-        </div>
-      )}
       {storageActive && (
         <div className="save">
           {props.level !== 1 && (
@@ -49,12 +28,12 @@ const Levels = props => {
               <p>Save level</p>
             </div>
           )}
-          {localStorage.getItem("level") !== null && (
+          {Cookies.get("level") !== undefined && (
             <div
               className={disabled ? "disabledsavebutton" : "savebutton"}
               onClick={() => props.loadLevel(props.level)}
             >
-              <p>Load level {localStorage.getItem("level")}</p>
+              <p>Load level {Cookies.get("level")}</p>
             </div>
           )}
         </div>

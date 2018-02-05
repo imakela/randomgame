@@ -16,7 +16,6 @@ const Info = props => {
               X
             </span>
             <div>
-              <br />
               <h2>Random Game</h2>
               <p>
                 Welcome to Random Game! There are two types of blocks, harmless

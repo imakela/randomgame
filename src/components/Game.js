@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from "js-cookie";
 import randomHexColor from "random-hex-color";
 import "../game.css";
 import GameMode from "./GameMode";
@@ -9,7 +10,7 @@ import Settings from "./Settings";
 import Levels from "./Levels";
 import Info from "./Info";
 import NextLevel from "./NextLevel";
-var _ = require("lodash");
+const _ = require("lodash");
 
 const numberOfBlocks = 4;
 const numberOfBombs = 1;
@@ -77,16 +78,16 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameMode: "practice",
+      gameMode: "levels",
       level: 1,
       tries: 0,
       totalTries: 0,
       levelTotalOdds: 0,
-      blockCount: numberOfBlocks,
+      blockCount: levelConfigs[1].blocks,
       bombPositions: Game.initBombs(numberOfBombs, numberOfBlocks),
       blockColors: Game.randomColor(numberOfBlocks),
       selectedBlocks: [],
-      bombCount: numberOfBombs,
+      bombCount: levelConfigs[1].bombs,
       isDone: false,
       levelDone: false,
       infoVisible: false
@@ -245,17 +246,17 @@ class Game extends React.Component {
   };
 
   saveGame = (level, tries, totalTries) => {
-    localStorage.setItem("level", level);
-    localStorage.setItem("tries", tries);
-    localStorage.setItem("totalTries", totalTries);
+    Cookies.set("level", level, { expires: 365 });
+    Cookies.set("tries", tries, { expires: 365 });
+    Cookies.set("totaltries", totalTries, { expires: 365 });
     this.setState({ gameMode: "levels" });
   };
 
   loadGame = level => {
-    if (localStorage.getItem("level") !== null) {
-      let loadedLevel = parseInt(localStorage.getItem("level"), 10);
-      let loadedTries = parseInt(localStorage.getItem("tries"), 10);
-      let loadedTotalTries = parseInt(localStorage.getItem("totalTries"), 10);
+    if (Cookies.get("level") !== undefined) {
+      let loadedLevel = parseInt(Cookies.get("level"), 10);
+      let loadedTries = parseInt(Cookies.get("tries"), 10);
+      let loadedTotalTries = parseInt(Cookies.get("totaltries"), 10);
       if (level === loadedLevel) {
         return;
       }

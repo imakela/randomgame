@@ -2,28 +2,16 @@ import React from "react";
 
 const GameMode = props => {
   let disabled = props.selectedBlocks.length !== 0 ? "disabled" : "";
-
+  let mode = props.gameMode === "levels" ? "Practice" : "Levels";
   return (
     <div className="gamemode">
-      <h3>Game Mode</h3>
-      <p>
-        Practice:
-        <input
-          type="radio"
-          checked={props.gameMode === "practice"}
-          onChange={props.changeGameMode}
-          disabled={disabled}
-        />
-      </p>
-      <p>
-        Levels:
-        <input
-          type="radio"
-          checked={props.gameMode === "levels"}
-          onChange={props.changeGameMode}
-          disabled={disabled}
-        />
-      </p>
+      <button
+        disabled={disabled}
+        onClick={props.changeGameMode}
+        className="custombutton"
+      >
+        {mode}
+      </button>
     </div>
   );
 };
